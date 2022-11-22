@@ -1,0 +1,17 @@
+.game-container{
+    display: grid;
+    grid-template-columns: repeat(3,75px);
+    row-gap: 5px;
+    column-gap: 5px;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.game{
+    height:75px;
+    cursor: pointer;
+}
