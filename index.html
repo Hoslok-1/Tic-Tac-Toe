@@ -9,11 +9,11 @@
     <link rel = "stylesheet"  href = "styles.css">
 </head>
 <body>
+    <div class = "header">
+        <h1>Tic-Tac-Toe</h1>
+    </div>
     <div class = "container">
-        <div class = "header">
-            
-        </div>
-        <div class = "game-container">
+        <div class = "game-container" id = "temp">
             <div class = "square one" id = "tile-1"></div>
             <div class = "square two" id = "tile-2"></div>
             <div class = "square three" id = "tile-3"></div>
@@ -24,7 +24,10 @@
             <div class = "square eight" id = "tile-8"></div>
             <div class = "square nine" id = "tile-9"></div>
         </div>
-        <div id = "temp">Winner:</div>
+        <div id="popup" class = "myForm">
+            <h2 id = "displayWinner"></h2>
+            <button type = "button" id="closeBtn"  onclick = "closeForm()">Close</button>
+        </div>
     </div>
 </body>
 </html>

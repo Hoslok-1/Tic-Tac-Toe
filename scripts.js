@@ -8,9 +8,9 @@ const six = document.getElementById('tile-7')
 const seven = document.getElementById('tile-8')
 const eight = document.getElementById('tile-9')
 
+const container = document.getElementById("temp")
+const winner = document.getElementById('displayWinner')
 
-
-const winner = document.getElementById('temp')
 number = 0;
 let gameBoard = [0,0,0,0,0,0,0,0,0]
 let win = false
@@ -31,6 +31,7 @@ const playRound = (() => {
 
     return {playRoundForZero,playRoundForOne,playRoundForSix,playRoundForSeven,playRoundForEight,playRoundForTwo,playRoundForThree,playRoundForFour,playRoundForFive}
 })();
+
 
 function checkForWin()
 {
@@ -57,11 +58,11 @@ function checkForWin()
         alpt = gameBoard[6];
 
     }
-    else if(gameBoard[0] == gameBoard[3] && gameBoard[3] == gameBoard[6] && gameBoard[0] != 0)
+    else if(gameBoard[0] == gameBoard[3] && gameBoard[3] == gameBoard[6] && gameBoard[3] != 0)
     {
         win = true
         console.log("W")
-        alpt = gameBoard[23];
+        alpt = gameBoard[3];
 
     }
     else if(gameBoard[1] == gameBoard[4] && gameBoard[4] == gameBoard[7] && gameBoard[3] != 0)
@@ -94,6 +95,15 @@ function checkForWin()
 
     return win;
 }
+function openForm()
+{
+    document.getElementById("popup").style.display = "block";
+}
+function closeForm()
+{
+    document.getElementById("popup").style.display = "none";
+    container.id = "temp"
+}
 
 function  changeGameBoard(num)
 {
@@ -114,20 +124,28 @@ function  changeGameBoard(num)
     console.log(gameBoard)
     if(checkForWin())
     {
-        winner.textContent = alpt+" wins"
+        if(number % 2 == 0)
+        {
+            winner.textContent = "Player 2 won!"
+        }
+        else
+        {
+            winner.textContent = "Player 1 won!"
+        }
+
+        openForm()
+        container.id = "gameoof"
     }
 }
 
 
 
-zero.addEventListener('click',function(){changeGameBoard(0);playRound.playRoundForZero()})
-one.addEventListener('click', function(){changeGameBoard(1);playRound.playRoundForOne()})
-two.addEventListener('click', function(){changeGameBoard(2);playRound.playRoundForTwo()})
-three.addEventListener('click', function(){changeGameBoard(3);playRound.playRoundForThree()})
-four.addEventListener('click', function(){changeGameBoard(4);playRound.playRoundForFour()})
-five.addEventListener('click', function(){changeGameBoard(5);playRound.playRoundForFive()})
-six.addEventListener('click', function(){changeGameBoard(6);playRound.playRoundForSix()})
-seven.addEventListener('click', function(){changeGameBoard(7);playRound.playRoundForSeven()})
-eight.addEventListener('click', function(){changeGameBoard(8);playRound.playRoundForEight()})
-
-
+    zero.addEventListener('click',function(){changeGameBoard(0);playRound.playRoundForZero()})
+    one.addEventListener('click', function(){changeGameBoard(1);playRound.playRoundForOne()})
+    two.addEventListener('click', function(){changeGameBoard(2);playRound.playRoundForTwo()})
+    three.addEventListener('click', function(){changeGameBoard(3);playRound.playRoundForThree()})
+    four.addEventListener('click', function(){changeGameBoard(4);playRound.playRoundForFour()})
+    five.addEventListener('click', function(){changeGameBoard(5);playRound.playRoundForFive()})
+    six.addEventListener('click', function(){changeGameBoard(6);playRound.playRoundForSix()})
+    seven.addEventListener('click', function(){changeGameBoard(7);playRound.playRoundForSeven()})
+    eight.addEventListener('click', function(){changeGameBoard(8);playRound.playRoundForEight()})

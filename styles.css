@@ -1,3 +1,13 @@
+html{
+    overflow: hidden;
+}
+
+body
+{
+    margin:0;
+    padding: 0;
+}
+
 .game-container
 {
     display: grid;
@@ -10,5 +20,45 @@
 {
     height:100px;
     width: 100px;
-    background-color:gray;
+    background-color:whitesmoke;
+    text-align: center;
+    font-size:70px;
+
+}
+
+h1{
+    text-align: center;
+}
+
+.container
+{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    width: 100%;
+    margin-top: 200px;
+    overflow-y: hidden;
+
+}
+
+#popup{
+    display: none;
+    position: fixed;
+    border:3px solid black;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) scale(1);
+    text-align: center;
+    transform: 0.4s, top 0.4s; 
+}
+
+#popup > *:not() {
+    transition-duration: 0.2s;
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+  }
+  
+  
+#gameoof{
+    transition-duration: 0.2s;filter: blur(8px);-webkit-filter: blur(8px);
 }
