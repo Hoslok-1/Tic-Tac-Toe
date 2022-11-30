@@ -17,6 +17,13 @@ let win = false
 let alpt;
 
 
+function playRoundAI()
+{
+    let choices = [gameBoard[0],gameBoard[1],gameBoard[2],gameBoard[3],gameBoard[4],gameBoard[5],gameBoard[6],gameBoard[7],gameBoard[8]]
+    random = Math.floor(Math.random() * 9);
+    return choices[random]
+}
+
 const playRound = (() => {
     const playRoundForZero = () =>{zero.textContent = gameBoard[0]}
     const playRoundForOne = () =>{one.textContent = gameBoard[1]}
@@ -28,9 +35,20 @@ const playRound = (() => {
     const playRoundForSeven = () =>{seven.textContent = gameBoard[7]}
     const playRoundForEight = () =>{eight.textContent = gameBoard[8]}
 
-
-    return {playRoundForZero,playRoundForOne,playRoundForSix,playRoundForSeven,playRoundForEight,playRoundForTwo,playRoundForThree,playRoundForFour,playRoundForFive}
+    const resetBoard = () =>{
+        zero.textContent = "";
+        one.textContent = "";
+        two.textContent = "";
+        three.textContent = "";
+        four.textContent = "";
+        five.textContent = "";
+        six.textContent = "";
+        seven.textContent = "";
+        eight.textContent = "";
+    }
+    return {playRoundForZero,playRoundForOne,playRoundForSix,playRoundForSeven,playRoundForEight,playRoundForTwo,playRoundForThree,playRoundForFour,playRoundForFive,resetBoard}
 })();
+
 
 
 function checkForWin()
@@ -40,56 +58,48 @@ function checkForWin()
     if(gameBoard[0] == gameBoard[1] && gameBoard[1] == gameBoard[2] && gameBoard[0] != 0)
     {
         win = true
-        console.log("W")
         alpt = gameBoard[2];
 
     }
     else if(gameBoard[3] == gameBoard[4] && gameBoard[4] == gameBoard[5] && gameBoard[3] != 0)
     {
         win = true
-        console.log("W")
         alpt = gameBoard[3];
 
     }
     else if(gameBoard[6] == gameBoard[7] && gameBoard[7] == gameBoard[8] && gameBoard[6] != 0)
     {
-        win = true
-        console.log("W")
+        win = true;
         alpt = gameBoard[6];
 
     }
-    else if(gameBoard[0] == gameBoard[3] && gameBoard[3] == gameBoard[6] && gameBoard[3] != 0)
+    else if(gameBoard[0] == gameBoard[3] && gameBoard[3] == gameBoard[6] && gameBoard[6] != 0)
     {
         win = true
-        console.log("W")
         alpt = gameBoard[3];
 
     }
-    else if(gameBoard[1] == gameBoard[4] && gameBoard[4] == gameBoard[7] && gameBoard[3] != 0)
+    else if(gameBoard[1] == gameBoard[4] && gameBoard[4] == gameBoard[7] && gameBoard[1] != 0)
     {
         win = true
-        console.log("W")
         alpt = gameBoard[1];
 
     }
-    else if(gameBoard[2] == gameBoard[5] && gameBoard[5] == gameBoard[8] && gameBoard[6] != 0)
+    else if(gameBoard[2] == gameBoard[5] && gameBoard[5] == gameBoard[8] && gameBoard[5] != 0)
     {
         win = true
-        console.log("W")
         alpt = gameBoard[2];
 
     }
     else if(gameBoard[0] == gameBoard[4] && gameBoard[4] == gameBoard[8] && gameBoard[0] != 0)
     {
         win = true
-        console.log("W")
         alpt = gameBoard[0];
 
     }
     else if(gameBoard[2] == gameBoard[4] && gameBoard[4] == gameBoard[6] && gameBoard[2] != 0)
     {
         win = true
-        console.log("W")
         alpt = gameBoard[2];
     }
 
@@ -98,15 +108,21 @@ function checkForWin()
 function openForm()
 {
     document.getElementById("popup").style.display = "block";
+    number = 0
 }
 function closeForm()
 {
     document.getElementById("popup").style.display = "none";
     container.id = "temp"
+    gameBoard = [0,0,0,0,0,0,0,0,0]
+    playRound.resetBoard();
 }
 
 function  changeGameBoard(num)
 {
+
+
+
     if (gameBoard[num] == 0 )
     {
         if(number % 2 == 0)
