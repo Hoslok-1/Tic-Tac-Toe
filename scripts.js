@@ -14,6 +14,7 @@ const winner = document.getElementById('displayWinner')
 number = 0;
 let gameBoard = [0,0,0,0,0,0,0,0,0]
 let win = false
+let tie = false
 let alpt;
 
 
@@ -21,8 +22,11 @@ function playRoundAI()
 {
     let choices = [gameBoard[0],gameBoard[1],gameBoard[2],gameBoard[3],gameBoard[4],gameBoard[5],gameBoard[6],gameBoard[7],gameBoard[8]]
     random = Math.floor(Math.random() * 9);
+    console.log(random)
+    console.log(choices[random])
     return choices[random]
 }
+
 
 const playRound = (() => {
     const playRoundForZero = () =>{zero.textContent = gameBoard[0]}
@@ -102,7 +106,11 @@ function checkForWin()
         win = true
         alpt = gameBoard[2];
     }
-
+    else if(gameBoard[2] != 0 && gameBoard[1] != 0 && gameBoard[3] != 0 && gameBoard[0] != 0 && gameBoard[4] != 0 && gameBoard[5] != 0 && gameBoard[6] != 0 && gameBoard[7] != 0 && gameBoard[8] != 0 )
+    {
+        tie = true;
+        win = true;
+    }
     return win;
 }
 function openForm()
@@ -121,8 +129,6 @@ function closeForm()
 function  changeGameBoard(num)
 {
 
-
-
     if (gameBoard[num] == 0 )
     {
         if(number % 2 == 0)
@@ -140,7 +146,12 @@ function  changeGameBoard(num)
     console.log(gameBoard)
     if(checkForWin())
     {
-        if(number % 2 == 0)
+        if(tie == true)
+        {
+            tie = false
+            winner.textContent = "It is a tie"
+        }
+        else if(number % 2 == 0)
         {
             winner.textContent = "Player 2 won!"
         }
@@ -165,3 +176,4 @@ function  changeGameBoard(num)
     six.addEventListener('click', function(){changeGameBoard(6);playRound.playRoundForSix()})
     seven.addEventListener('click', function(){changeGameBoard(7);playRound.playRoundForSeven()})
     eight.addEventListener('click', function(){changeGameBoard(8);playRound.playRoundForEight()})
+
